@@ -61,6 +61,7 @@ This project provides a music tracker system consisting of:
 
 ## Usage
 
+- Music files need to have an author and a title in their data
 - The C program will run periodically as defined by the systemd timer and send track information to the Node.js server.
 - The Node.js server exposes an endpoint at `/get-info` that returns the current track information in JSON format.
 
@@ -77,4 +78,4 @@ This project provides a music tracker system consisting of:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the AGPL-3.0 License - see the [LICENSE](LICENSE) file for details.
