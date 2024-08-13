@@ -1,0 +1,27 @@
+{
+  "name": "web-mpd-tracker",
+  "version": "1.0.0",
+  "description": "MPD Web Music Tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piradite/web-mpd-tracker.git"
+  },
+  "keywords": [
+    "tracker",
+    "mpd",
+    "linux",
+    "x11",
+    "web"
+  ],
+  "author": "Piradite",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/piradite/web-mpd-tracker/issues"
+  },
+  "homepage": "https://github.com/piradite/web-mpd-tracker#readme"
+}

@@ -1,0 +1,91 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#trackContainer {
+    text-align: center;
+}
+
+#trackInfo {
+    font-weight: bold;
+    font-size: 64px;
+}
+
+#timeContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 24px;
+    position: relative;
+}
+
+#currentTime,
+#finalTime {
+    width: 30%;
+}
+
+#separator {
+    width: calc(100% - 60px);
+    height: 2px;
+    background-color: #000;
+    position: relative;
+    margin: 0 auto;
+}
+
+#timeLine {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #000;
+    transform: translateY(-50%);
+}
+
+#progressCircle {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #000;
+    transform: translate(-50%, -50%);
+    transition: left 0.5s ease;
+}
+
+#playbackStatus {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+#youtubeLinkContainer {
+    margin-top: 20px;
+}
+
+#youtubeLink {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+#youtubeLink:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    #trackInfo {
+        font-size: 24px;
+    }
+
+    #timeContainer {
+        font-size: 16px;
+    }
+}

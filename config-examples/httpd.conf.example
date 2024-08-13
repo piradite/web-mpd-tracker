@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+    ServerName yourdomain.com
+
+    ProxyRequests Off
+    ProxyPreserveHost On
+
+    <Proxy *>
+        Order allow,deny
+        Allow from all
+    </Proxy>
+
+    ProxyPass / http://localhost:3000/
+    ProxyPassReverse / http://localhost:3000/
+</VirtualHost>
