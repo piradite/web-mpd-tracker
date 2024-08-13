@@ -13,9 +13,8 @@ This project provides a music tracker system consisting of:
 
 1. **MPD (Music Player Daemon)**: Required for tracking music playback.
 2. **Node.js**: Required for running the Node.js server.
-3. **MPD Client Library**: For compiling the C program.
-4. **libcurl**: For HTTP requests in the C program.
-5. **systemd**: For running the service and timer.
+3. **gcc**: For compiling the C program.
+4. **systemd**: For running the service and timer.
 
 ## Installation
 
