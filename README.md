@@ -18,13 +18,29 @@ This project provides a music tracker system consisting of:
 
 ## Installation
 
-### Build and Install
+### Node.js Server Setup
 
-1. **Clone the repository** (if applicable):
+1. **Clone the repository**:
     ```bash
     git clone https://github.com/piradite/web-mpd-tracker.git
     cd web-mpd-tracker
     ```
+
+2. **Install Dependencies**:
+    ```bash
+    npm install express body-parser path youtube-search-without-api-key
+    ```
+
+3. **Start the Node.js Server**:
+    ```bash
+    node server.js
+    ```
+
+    The server will be accessible on port 3000.
+
+### Build and Install
+
+1. **Modify CURL_URL to your server.js link**
 
 2. **Compile the C Program (OPTIONAL)**:
     ```bash
@@ -42,20 +58,6 @@ This project provides a music tracker system consisting of:
     - Install systemd service and timer files to `/etc/systemd/system/`.
     
     - After that all files are enabled and ran automatically
-
-### Node.js Server Setup
-
-1. **Install Dependencies**:
-    ```bash
-    npm install express body-parser path youtube-search-without-api-key
-    ```
-
-2. **Start the Node.js Server**:
-    ```bash
-    node server.js
-    ```
-
-    The server will be accessible on port 3000.
 
 ## Usage
 
