@@ -11,6 +11,21 @@ function formatTime(seconds) {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
+let currentYouTubeLink = '';
+let currentPlayerTime = 0;
+
+function updateMusicPlayer(youtubeLink) {
+    const musicPlayer = document.getElementById('musicPlayer');
+
+    if (youtubeLink && youtubeLink !== currentYouTubeLink) {
+        const videoId = youtubeLink.split('v=')[1].split('&')[0];
+        currentPlayerTime = currentTime + 1;
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?start=${currentPlayerTime}&autoplay=1`;
+        musicPlayer.src = embedUrl;
+        currentYouTubeLink = youtubeLink;
+    }
+}
+
 async function fetchTrackInfo() {
     try {
         const response = await fetch('/get-info', { cache: 'no-store' });
@@ -36,19 +51,28 @@ async function fetchTrackInfo() {
             title: data.title,
             time: Number(data.time),
             totalTime: Number(data.totalTime),
-            status: data.status
+            status: data.status,
+            youtubeLink: data.youtubeLink
         };
 
         const timeDifference = Math.abs(newTrack.time - currentTime);
 
         if (newTrack.artist !== previousTrack.artist || newTrack.title !== previousTrack.title || timeDifference >= 4) {
-            document.getElementById('trackInfo').textContent = `${newTrack.artist} - ${newTrack.title}`;
+            const trackInfoElement = document.getElementById('trackInfo');
+            const newLink = newTrack.youtubeLink || 'https://piradite.nekoweb.org/song.html';
+
+            if (trackInfoElement.href !== newLink) {
+                trackInfoElement.textContent = `${newTrack.artist} - ${newTrack.title}`;
+                trackInfoElement.href = newLink;
+            }
+
             totalTime = newTrack.totalTime;
             document.getElementById('finalTime').textContent = formatTime(totalTime);
             previousTrack = { artist: newTrack.artist, title: newTrack.title };
             currentTime = newTrack.time;
             document.getElementById('currentTime').textContent = formatTime(currentTime);
             updateProgressCircle();
+            updateMusicPlayer(newTrack.youtubeLink);
         }
 
         if (newTrack.status !== playbackStatus) {
@@ -59,18 +83,33 @@ async function fetchTrackInfo() {
             updateProgressCircle();
         }
 
-        const youtubeLink = data.youtubeLink;
-        const youtubeLinkElement = document.getElementById('youtubeLink');
-
-        if (youtubeLink) {
-            youtubeLinkElement.href = youtubeLink;
-            youtubeLinkElement.style.display = 'inline';
-        } else {
-            youtubeLinkElement.style.display = 'none';
-        }
+        updateHistory(data.history);
     } catch (error) {
         console.error('Error fetching track info:', error);
     }
+}
+
+function truncateTitle(title, maxLength) {
+    return title.length > maxLength ? title.substring(0, maxLength) + '...' : title;
+}
+
+function updateHistory(history) {
+    const historyContainer = document.getElementById('historyContainer');
+    historyContainer.innerHTML = '';
+
+    history.forEach(track => {
+        const trackElement = document.createElement('div');
+        trackElement.classList.add('history-track');
+
+        const truncatedTitle = truncateTitle(`${track.artist} - ${track.title}`, 32);
+        const trackLink = document.createElement('a');
+        trackLink.href = track.youtubeLink || '#';
+        trackLink.textContent = truncatedTitle;
+        trackLink.target = '_blank';
+
+        trackElement.appendChild(trackLink);
+        historyContainer.appendChild(trackElement);
+    });
 }
 
 function updateCurrentTime() {

@@ -39,9 +39,10 @@ const startCounting = () => {
     }, 1000);
 };
 
-const searchYouTube = async (query) => {
+const searchYouTube = async (artist, title) => {
     try {
         const yt = await import('youtube-search-without-api-key');
+        const query = `${artist} - ${title}`;
         const videos = await yt.search(query);
         return videos.length > 0 ? videos[0].url : '';
     } catch (error) {
@@ -49,6 +50,8 @@ const searchYouTube = async (query) => {
         return '';
     }
 };
+
+let trackHistory = [];
 
 app.post('/track-info', async (req, res) => {
     const { artist, title, time, totalTime, status } = req.body;
@@ -72,7 +75,22 @@ app.post('/track-info', async (req, res) => {
 
         if (status === 'playing') startCounting();
 
-        currentTrack.youtubeLink = await searchYouTube(`${artist} ${title}`);
+        currentTrack.youtubeLink = await searchYouTube(artist, title);
+
+        const trackForHistory = {
+            artist: currentTrack.artist,
+            title: currentTrack.title,
+            youtubeLink: currentTrack.youtubeLink
+        };
+
+        const isNewTrack = !trackHistory.length ||
+                           trackHistory[0].artist !== newTrack.artist ||
+                           trackHistory[0].title !== newTrack.title;
+
+        if (isNewTrack) {
+            trackHistory.unshift(trackForHistory);
+            if (trackHistory.length > 5) trackHistory.pop();
+        }
     }
 
     res.sendStatus(200);
@@ -99,7 +117,8 @@ app.get('/get-info', (req, res) => {
             time: currentTrack.time || 0,
             totalTime: currentTrack.totalTime || 0,
             status: currentTrack.status || 'offline',
-            youtubeLink: currentTrack.youtubeLink || ''
+            youtubeLink: currentTrack.youtubeLink || '',
+            history: trackHistory
         };
 
         if (trackInfo.artist && trackInfo.title && trackInfo.status !== 'offline') {

@@ -40,7 +40,10 @@ This project provides a music tracker system consisting of:
 
 ### Build and Install
 
-1. **Modify CURL_URL to your server.js link**
+1. **Modify CURL_URL in a C script to your server.js link**
+   ```C
+   #define CURL_URL "https://LINK TO WHERE YOUR SERVER.JS IS HOSTED/track-info"
+   ```
 
 2. **Compile the C Program (OPTIONAL)**:
     ```bash

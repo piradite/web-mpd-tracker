@@ -13,20 +13,6 @@ body {
     text-align: center;
 }
 
-#trackInfo {
-    font-weight: bold;
-    font-size: 64px;
-}
-
-#timeContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    font-size: 24px;
-    position: relative;
-}
-
 #currentTime,
 #finalTime {
     width: 30%;
@@ -50,42 +36,163 @@ body {
     transform: translateY(-50%);
 }
 
-#progressCircle {
-    position: absolute;
-    top: 50%;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #000;
-    transform: translate(-50%, -50%);
-    transition: left 0.5s ease;
-}
+@media (min-width: 769px) {
+    #trackInfo {
+        font-weight: bold;
+        font-size: 64px;
+        color: rgb(61, 61, 255);
+        text-decoration: none;
+    }
 
-#playbackStatus {
-    margin-top: 20px;
-    font-size: 24px;
-    color: #333;
-}
+    #youtubeLinkContainer {
+        margin-top: 20px;
+    }
 
-#youtubeLinkContainer {
-    margin-top: 20px;
-}
+    #youtubeLink {
+        color: #1a73e8;
+        text-decoration: none;
+    }
 
-#youtubeLink {
-    color: #1a73e8;
-    text-decoration: none;
-}
+    #youtubeLink:hover {
+        text-decoration: underline;
+    }
 
-#youtubeLink:hover {
-    text-decoration: underline;
+    .history-track a {
+        color: #1a73e8;
+        text-decoration: none;
+    }
+
+    .history-track a:hover {
+        text-decoration: underline;
+    }
+
+    #historyContainer {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        font-size: 14px;
+        color: #333;
+        text-align: left;
+        text-decoration: none;
+        color: rgb(61, 61, 255);
+    }
+
+    .history-track {
+        margin-bottom: 5px;
+    }
+
+    #musicPlayerContainer {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 20%;
+        height: 20%;
+        background-color: #000;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #musicPlayer {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 8px;
+    }
+
+    #playbackStatus {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    #timeContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 24px;
+        position: relative;
+    }
+
+    #progressCircle {
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #000;
+        transform: translate(-50%, -50%);
+        transition: left 2s ease;
+    }
 }
 
 @media (max-width: 768px) {
     #trackInfo {
         font-size: 24px;
+        font-weight: bold;
+        color: rgb(61, 61, 255);
+        text-decoration: none;
     }
 
     #timeContainer {
         font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    #historyContainer {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+        color: #333;
+        text-align: left;
+        text-decoration: none;
+        color: rgb(61, 61, 255);
+    }
+
+    .history-track {
+        margin-top: 5px;
+    }
+
+    #musicPlayerContainer {
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        width: calc(100% - 30px);
+        height: calc((100% - 50%)* 9 / 16);
+        background-color: #000;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #musicPlayer {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 8px;
+    }
+
+    #playbackStatus {
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    #progressCircle {
+        position: absolute;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #000;
+        transform: translate(-50%, -50%);
+        transition: left 2s ease;
     }
 }

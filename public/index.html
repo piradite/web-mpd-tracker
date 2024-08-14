@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="trackContainer">
-        <div id="trackInfo">Loading track info...</div>
+        <a id="trackInfo" href="" target="_blank">Loading track info...</a>
         <div id="timeContainer">
             <div id="currentTime">0:00</div>
             <div id="separator">
@@ -19,9 +19,10 @@
             <div id="finalTime">0:00</div>
         </div>
         <div id="playbackStatus">offline</div>
-        <div id="youtubeLinkContainer">
-            <a id="youtubeLink" href="" target="_blank">Link For The Current Music</a>
-        </div>
+        <div id="historyContainer"></div>
+        <div id="musicPlayerContainer">
+            <iframe id="musicPlayer" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>        
     </div>
     <script src="script.js"></script>
 </body>
