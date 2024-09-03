@@ -36,7 +36,7 @@ async function fetchTrackInfo() {
         }
 
         if (!response.ok) {
-            throw new Error(`Network response was not ok :( ${response.statusText}`);
+            throw new Error(`Network response was not ok ${response.statusText}`);
         }
 
         const data = await response.json();
@@ -59,7 +59,7 @@ async function fetchTrackInfo() {
 
         if (newTrack.artist !== previousTrack.artist || newTrack.title !== previousTrack.title || timeDifference >= 4) {
             const trackInfoElement = document.getElementById('trackInfo');
-            const newLink = newTrack.youtubeLink || 'https://piradite.nekoweb.org/song.html';
+            const newLink = newTrack.youtubeLink || '/';
 
             if (trackInfoElement.href !== newLink) {
                 trackInfoElement.textContent = `${newTrack.artist} - ${newTrack.title}`;
